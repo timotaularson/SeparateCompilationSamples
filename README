@@ -1,6 +1,9 @@
 This is a work-in-progress test of separate native compilation of Julia packages.
 It is currently Linux-only, but small improvements should let it run on other systems.
 
+Disassembly of the resulting samples are included, so you don't have to do the steps
+below to see the result and possibly help :)
+
 # Build the https://github.com/timotaularson/julia/tree/SeparateCompilation branch of Julia.
 
 # From the directory containing this Demo code
