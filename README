@@ -5,7 +5,7 @@ It is currently Linux-only, but small improvements should let it run on other sy
 
 # From the directory containing this Demo code
 # run the julia executable built from the above branch.
-# Note that the last step (calling the DemoPkg.test1 function is expected to fail currently.
+# Note that the last step (calling the DemoPkg.test1 function) is expected to fail currently.
 julia> include("DemoScript.jl")
 julia> using Pkg
 julia> Pkg.activate("DemoPkg")
