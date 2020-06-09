@@ -14,8 +14,10 @@ julia> DemoPkg.test1(Int64(1))
 
 # Disassemble the resulting shared libraries and compare the native code.
 # The demo script compiles correctly:
-$ objdump --disassemble test.so
+$ objdump --disassemble test.so > ScriptDisassembly.txt
 # The demo package compiles incorrectly, with extra code wrapping the julia_test_* function.
-$ objdump --disassemble ~/.julia/compiled/v1.6/DemoPkg/*.so
+$ objdump --disassemble ~/.julia/compiled/v1.6/DemoPkg/*.so > PkgDisassembly.txt
 
 # I would appreciate any clues toward solving this.
+
+

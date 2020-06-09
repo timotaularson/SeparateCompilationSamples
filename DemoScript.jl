@@ -1,7 +1,6 @@
 # Define a function/method
 function test1(a::Int64)
-    r = a * 7
-    println("Hello, World!")
+    r = a * 53
     return r
 end
 

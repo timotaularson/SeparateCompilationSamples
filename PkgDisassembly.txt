@@ -1,0 +1,57 @@
+
+/home/tim/.julia/compiled/v1.6/DemoPkg/PsD6P_TRsIL.ji.so:     file format elf64-x86-64
+
+
+Disassembly of section .plt:
+
+0000000000001000 <.plt>:
+    1000:	ff 35 02 30 00 00    	pushq  0x3002(%rip)        # 4008 <_GLOBAL_OFFSET_TABLE_+0x8>
+    1006:	ff 25 04 30 00 00    	jmpq   *0x3004(%rip)        # 4010 <_GLOBAL_OFFSET_TABLE_+0x10>
+    100c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000001010 <jl_box_int64@plt>:
+    1010:	ff 25 02 30 00 00    	jmpq   *0x3002(%rip)        # 4018 <jl_box_int64>
+    1016:	68 00 00 00 00       	pushq  $0x0
+    101b:	e9 e0 ff ff ff       	jmpq   1000 <.plt>
+
+0000000000001020 <julia_test1_36@plt>:
+    1020:	ff 25 fa 2f 00 00    	jmpq   *0x2ffa(%rip)        # 4020 <julia_test1_36+0x2ff0>
+    1026:	68 01 00 00 00       	pushq  $0x1
+    102b:	e9 d0 ff ff ff       	jmpq   1000 <.plt>
+
+Disassembly of section .text:
+
+0000000000001030 <julia_test1_36>:
+    1030:	53                   	push   %rbx
+    1031:	48 89 fb             	mov    %rdi,%rbx
+    1034:	48 83 3d f4 2f 00 00 	cmpq   $0x0,0x2ff4(%rip)        # 4030 <jl_tls_offset>
+    103b:	00 
+    103c:	74 12                	je     1050 <julia_test1_36+0x20>
+    103e:	64 48 8b 04 25 00 00 	mov    %fs:0x0,%rax
+    1045:	00 00 
+    1047:	48 69 c3 05 00 00 00 	imul   $0x5,%rbx,%rax
+    104e:	5b                   	pop    %rbx
+    104f:	c3                   	retq   
+    1050:	ff 15 d2 2f 00 00    	callq  *0x2fd2(%rip)        # 4028 <jl_get_ptls_states_slot>
+    1056:	48 69 c3 05 00 00 00 	imul   $0x5,%rbx,%rax
+    105d:	5b                   	pop    %rbx
+    105e:	c3                   	retq   
+    105f:	90                   	nop
+
+0000000000001060 <jfptr_test1_37>:
+    1060:	53                   	push   %rbx
+    1061:	48 89 f3             	mov    %rsi,%rbx
+    1064:	48 83 3d c4 2f 00 00 	cmpq   $0x0,0x2fc4(%rip)        # 4030 <jl_tls_offset>
+    106b:	00 
+    106c:	74 1e                	je     108c <jfptr_test1_37+0x2c>
+    106e:	64 48 8b 04 25 00 00 	mov    %fs:0x0,%rax
+    1075:	00 00 
+    1077:	48 8b 03             	mov    (%rbx),%rax
+    107a:	48 8b 38             	mov    (%rax),%rdi
+    107d:	e8 9e ff ff ff       	callq  1020 <julia_test1_36@plt>
+    1082:	48 89 c7             	mov    %rax,%rdi
+    1085:	e8 86 ff ff ff       	callq  1010 <jl_box_int64@plt>
+    108a:	5b                   	pop    %rbx
+    108b:	c3                   	retq   
+    108c:	ff 15 96 2f 00 00    	callq  *0x2f96(%rip)        # 4028 <jl_get_ptls_states_slot>
+    1092:	eb e3                	jmp    1077 <jfptr_test1_37+0x17>
