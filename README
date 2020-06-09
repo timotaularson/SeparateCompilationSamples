@@ -13,10 +13,10 @@ interaction required.
 
 Design:
 
-When a function is compiled in Julia usually 2 native functions are created either in memory (JIT)
-or in a shared library. The first function does the main work and can have one of several special
-optimized calling conventions. The second function is a convenience wrapper which provides one
-standard calling convention with which to call the main work function.
+When a specialization of a function is compiled in Julia usually 2 native functions are created
+either in memory (JIT) or in a shared library. The first function does the main work and can have
+one of several special optimized calling conventions. The second function is a convenience wrapper
+which provides one standard calling convention with which to call the main work function.
 
 For the system image this branch causes the native functions to be exported and and their native
 code names to be retained in the system image meta data so they can be linked against.

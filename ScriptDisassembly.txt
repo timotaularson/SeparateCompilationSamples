@@ -9,32 +9,32 @@ Disassembly of section .plt:
     1006:	ff 25 04 30 00 00    	jmpq   *0x3004(%rip)        # 4010 <_GLOBAL_OFFSET_TABLE_+0x10>
     100c:	0f 1f 40 00          	nopl   0x0(%rax)
 
-0000000000001010 <jl_box_int64@plt>:
-    1010:	ff 25 02 30 00 00    	jmpq   *0x3002(%rip)        # 4018 <jl_box_int64>
+0000000000001010 <julia_test1_41@plt>:
+    1010:	ff 25 02 30 00 00    	jmpq   *0x3002(%rip)        # 4018 <julia_test1_41+0x2fe8>
     1016:	68 00 00 00 00       	pushq  $0x0
     101b:	e9 e0 ff ff ff       	jmpq   1000 <.plt>
 
-0000000000001020 <julia_test1_109@plt>:
-    1020:	ff 25 fa 2f 00 00    	jmpq   *0x2ffa(%rip)        # 4020 <julia_test1_109+0x2ff0>
+0000000000001020 <jl_box_int64@plt>:
+    1020:	ff 25 fa 2f 00 00    	jmpq   *0x2ffa(%rip)        # 4020 <jl_box_int64>
     1026:	68 01 00 00 00       	pushq  $0x1
     102b:	e9 d0 ff ff ff       	jmpq   1000 <.plt>
 
 Disassembly of section .text:
 
-0000000000001030 <julia_test1_109>:
+0000000000001030 <julia_test1_41>:
     1030:	48 6b c7 35          	imul   $0x35,%rdi,%rax
     1034:	c3                   	retq   
     1035:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
     103c:	00 00 00 
     103f:	90                   	nop
 
-0000000000001040 <jfptr_test1_110>:
+0000000000001040 <jfptr_test1_42>:
     1040:	50                   	push   %rax
     1041:	48 8b 06             	mov    (%rsi),%rax
     1044:	48 8b 38             	mov    (%rax),%rdi
-    1047:	e8 d4 ff ff ff       	callq  1020 <julia_test1_109@plt>
+    1047:	e8 c4 ff ff ff       	callq  1010 <julia_test1_41@plt>
     104c:	48 89 c7             	mov    %rax,%rdi
-    104f:	e8 bc ff ff ff       	callq  1010 <jl_box_int64@plt>
+    104f:	e8 cc ff ff ff       	callq  1020 <jl_box_int64@plt>
     1054:	59                   	pop    %rcx
     1055:	c3                   	retq   
     1056:	66 90                	xchg   %ax,%ax
