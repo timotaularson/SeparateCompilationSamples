@@ -1,8 +1,44 @@
 This is a work-in-progress test of separate native compilation of Julia packages.
 It is currently Linux-only, but small improvements should let it run on other systems.
+There are still some issues to resolve before this will fully work.
 
-Disassembly of the resulting samples are included, so you don't have to do the steps
-below to see the result and possibly help :)
+--
+
+Purpose:
+
+Compile and cache native code for packages to allow near-instant loading.
+This creates a shared library paired with the current "ji" precompile file for each package,
+to be recreated with the same lifecycle as the "ji" precompile file with no extra user
+interaction required.
+
+Design:
+
+When a function is compiled in Julia usually 2 native functions are created either in memory (JIT)
+or in a shared library. The first function does the main work and can have one of several special
+optimized calling conventions. The second function is a convenience wrapper which provides one
+standard calling convention with which to call the main work function.
+
+For the system image this branch causes the native functions to be exported and and their native
+code names to be retained in the system image meta data so they can be linked against.
+
+For a package the native functions are compiled as exported functions into a shared library
+and their names are preserved in the "ji" precompile file so when it is loaded the shared library
+can be loaded as well and the native functions linked back into the package meta data, allowing
+native re-compilation to be skipped except when source code for the package has been modified.
+
+--
+
+Remaining known issues:
+
+Miscompiling extra wrapper code into the special calling signature function when compiling
+packages (as opposed to how it works correctly in a manual script sample below.)
+
+Native functions need to be made unique between packages
+(possibly adding a package hash slug to their names.)
+
+--
+
+Demonstration of what works and what does not yet:
 
 # Build the https://github.com/timotaularson/julia/tree/SeparateCompilation branch of Julia.
 
@@ -20,6 +56,9 @@ julia> DemoPkg.test1(Int64(1))
 $ objdump --disassemble test.so > ScriptDisassembly.txt
 # The demo package compiles incorrectly, with extra code wrapping the julia_test1_* function.
 $ objdump --disassemble ~/.julia/compiled/v1.6/DemoPkg/*.so > PkgDisassembly.txt
+
+Disassembly of the resulting samples are included, so you don't have to do the steps
+below to see the result and possibly help :)
 
 # I would appreciate any clues toward solving this.
 
