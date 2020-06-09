@@ -1,0 +1,21 @@
+This is a work-in-progress test of separate native compilation of Julia packages.
+It is currently Linux-only, but small improvements should let it run on other systems.
+
+# Build the https://github.com/timotaularson/julia/tree/SeparateCompilation branch of Julia.
+
+# From the directory containing this Demo code
+# run the julia executable built from the above branch.
+# Note that the last step (calling the DemoPkg.test1 function is expected to fail currently.
+julia> include("DemoScript.jl")
+julia> using Pkg
+julia> Pkg.activate("DemoPkg")
+julia> using DemoPkg
+julia> DemoPkg.test1(Int64(1))
+
+# Disassemble the resulting shared libraries and compare the native code.
+# The demo script compiles correctly:
+$ objdump --disassemble test.so
+# The demo package compiles incorrectly, with extra code wrapping the julia_test_* function.
+$ objdump --disassemble ~/.julia/compiled/v1.6/DemoPkg/*.so
+
+# I would appreciate any clues toward solving this.

@@ -1,0 +1,4 @@
+name = "DemoPkg"
+uuid = "8c1df3d8-d5e3-4748-9f6f-b4d2b9173d0c"
+authors = ["Tim Larson <timotaularson@gmail.com>"]
+version = "0.1.0"
