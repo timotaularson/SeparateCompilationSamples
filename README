@@ -26,6 +26,16 @@ and their names are preserved in the "ji" precompile file so when it is loaded t
 can be loaded as well and the native functions linked back into the package meta data, allowing
 native re-compilation to be skipped except when source code for the package has been modified.
 
+Often a package A is used by a package B where types are needed from B to be able to compile
+specialized functions from A. This raises the question of where to store the native code for
+such function specializations. This also arises if some functions in package A are not native
+compiled but B causes them to be native compiled. A solution is to store them in the shared
+library for package B, and keep changes synchronized between packages by the same dependency
+change logic which is used to keep the "ji" precompile files up-to-date. If two or more packages
+cause compilation of the same specializations of functions from packages they use they will
+generate the same code so the related native functions can be linked at will from any package's
+shared library without conflict.
+
 --
 
 Remaining known issues:
