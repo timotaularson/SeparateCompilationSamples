@@ -1,0 +1,115 @@
+
+test.so:     file format elf64-x86-64
+
+
+Disassembly of section .plt:
+
+0000000000001000 <.plt>:
+    1000:	ff 35 02 30 00 00    	pushq  0x3002(%rip)        # 4008 <_GLOBAL_OFFSET_TABLE_+0x8>
+    1006:	ff 25 04 30 00 00    	jmpq   *0x3004(%rip)        # 4010 <_GLOBAL_OFFSET_TABLE_+0x10>
+    100c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000001010 <julia_test1_47@plt>:
+    1010:	ff 25 02 30 00 00    	jmpq   *0x3002(%rip)        # 4018 <julia_test1_47+0x2ef8>
+    1016:	68 00 00 00 00       	pushq  $0x0
+    101b:	e9 e0 ff ff ff       	jmpq   1000 <.plt>
+
+0000000000001020 <jl_box_int64@plt>:
+    1020:	ff 25 fa 2f 00 00    	jmpq   *0x2ffa(%rip)        # 4020 <jl_box_int64>
+    1026:	68 01 00 00 00       	pushq  $0x1
+    102b:	e9 d0 ff ff ff       	jmpq   1000 <.plt>
+
+0000000000001030 <jl_apply_generic@plt>:
+    1030:	ff 25 f2 2f 00 00    	jmpq   *0x2ff2(%rip)        # 4028 <jl_apply_generic>
+    1036:	68 02 00 00 00       	pushq  $0x2
+    103b:	e9 c0 ff ff ff       	jmpq   1000 <.plt>
+
+0000000000001040 <julia_test0_45@plt>:
+    1040:	ff 25 ea 2f 00 00    	jmpq   *0x2fea(%rip)        # 4030 <julia_test0_45+0x2fd0>
+    1046:	68 03 00 00 00       	pushq  $0x3
+    104b:	e9 b0 ff ff ff       	jmpq   1000 <.plt>
+
+0000000000001050 <julia_chipmunk_funAddGlobalNoInline_25259@plt>:
+    1050:	ff 25 e2 2f 00 00    	jmpq   *0x2fe2(%rip)        # 4038 <julia_chipmunk_funAddGlobalNoInline_25259>
+    1056:	68 04 00 00 00       	pushq  $0x4
+    105b:	e9 a0 ff ff ff       	jmpq   1000 <.plt>
+
+Disassembly of section .text:
+
+0000000000001060 <julia_test0_45>:
+    1060:	55                   	push   %rbp
+    1061:	48 89 e5             	mov    %rsp,%rbp
+    1064:	41 57                	push   %r15
+    1066:	41 56                	push   %r14
+    1068:	53                   	push   %rbx
+    1069:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+    106d:	48 83 ec 40          	sub    $0x40,%rsp
+    1071:	49 89 fe             	mov    %rdi,%r14
+    1074:	c5 f8 57 c0          	vxorps %xmm0,%xmm0,%xmm0
+    1078:	c5 fc 29 04 24       	vmovaps %ymm0,(%rsp)
+    107d:	48 8b 05 c4 2f 00 00 	mov    0x2fc4(%rip),%rax        # 4048 <jl_tls_offset>
+    1084:	48 85 c0             	test   %rax,%rax
+    1087:	74 78                	je     1101 <julia_test0_45+0xa1>
+    1089:	64 48 8b 1c 25 00 00 	mov    %fs:0x0,%rbx
+    1090:	00 00 
+    1092:	48 01 c3             	add    %rax,%rbx
+    1095:	48 c7 04 24 08 00 00 	movq   $0x8,(%rsp)
+    109c:	00 
+    109d:	48 8b 03             	mov    (%rbx),%rax
+    10a0:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+    10a5:	48 89 e0             	mov    %rsp,%rax
+    10a8:	48 89 03             	mov    %rax,(%rbx)
+    10ab:	4c 89 f7             	mov    %r14,%rdi
+    10ae:	c5 f8 77             	vzeroupper 
+    10b1:	e8 9a ff ff ff       	callq  1050 <julia_chipmunk_funAddGlobalNoInline_25259@plt>
+    10b6:	49 89 c7             	mov    %rax,%r15
+    10b9:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+    10be:	4c 89 f7             	mov    %r14,%rdi
+    10c1:	e8 5a ff ff ff       	callq  1020 <jl_box_int64@plt>
+    10c6:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+    10cb:	48 89 44 24 28       	mov    %rax,0x28(%rsp)
+    10d0:	4c 89 7c 24 30       	mov    %r15,0x30(%rsp)
+    10d5:	48 bf 10 d2 e0 f2 d1 	movabs $0x7fd1f2e0d210,%rdi
+    10dc:	7f 00 00 
+    10df:	48 8d 74 24 28       	lea    0x28(%rsp),%rsi
+    10e4:	ba 02 00 00 00       	mov    $0x2,%edx
+    10e9:	e8 42 ff ff ff       	callq  1030 <jl_apply_generic@plt>
+    10ee:	48 8b 4c 24 08       	mov    0x8(%rsp),%rcx
+    10f3:	48 89 0b             	mov    %rcx,(%rbx)
+    10f6:	48 8d 65 e8          	lea    -0x18(%rbp),%rsp
+    10fa:	5b                   	pop    %rbx
+    10fb:	41 5e                	pop    %r14
+    10fd:	41 5f                	pop    %r15
+    10ff:	5d                   	pop    %rbp
+    1100:	c3                   	retq   
+    1101:	c5 f8 77             	vzeroupper 
+    1104:	ff 15 36 2f 00 00    	callq  *0x2f36(%rip)        # 4040 <jl_get_ptls_states_slot>
+    110a:	48 89 c3             	mov    %rax,%rbx
+    110d:	eb 86                	jmp    1095 <julia_test0_45+0x35>
+    110f:	90                   	nop
+
+0000000000001110 <jfptr_test0_46>:
+    1110:	50                   	push   %rax
+    1111:	48 8b 06             	mov    (%rsi),%rax
+    1114:	48 8b 38             	mov    (%rax),%rdi
+    1117:	e8 24 ff ff ff       	callq  1040 <julia_test0_45@plt>
+    111c:	59                   	pop    %rcx
+    111d:	c3                   	retq   
+    111e:	66 90                	xchg   %ax,%ax
+
+0000000000001120 <julia_test1_47>:
+    1120:	50                   	push   %rax
+    1121:	e8 1a ff ff ff       	callq  1040 <julia_test0_45@plt>
+    1126:	59                   	pop    %rcx
+    1127:	c3                   	retq   
+    1128:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+    112f:	00 
+
+0000000000001130 <jfptr_test1_48>:
+    1130:	50                   	push   %rax
+    1131:	48 8b 06             	mov    (%rsi),%rax
+    1134:	48 8b 38             	mov    (%rax),%rdi
+    1137:	e8 d4 fe ff ff       	callq  1010 <julia_test1_47@plt>
+    113c:	59                   	pop    %rcx
+    113d:	c3                   	retq   
+    113e:	66 90                	xchg   %ax,%ax
